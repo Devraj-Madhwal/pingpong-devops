@@ -1,0 +1,27 @@
+name: Ping Pong CI/CD
+
+on:
+push:
+branches:
+- main
+
+jobs:
+build:
+runs-on: ubuntu-latest
+
+```
+steps:
+  - name: Checkout code
+    uses: actions/checkout@v3
+
+  - name: Install Docker
+    run: |
+      sudo apt update
+      sudo apt install docker.io -y
+
+  - name: Build Frontend
+    run: docker build -t pingpong-frontend ./frontend
+
+  - name: Build Backend
+    run: docker build -t pingpong-backend ./backend
+```
